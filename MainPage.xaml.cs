@@ -14,6 +14,11 @@ public partial class MainPage : ContentPage
     private MockLocationProvider? _mockProvider;
     private IDispatcherTimer? _timer;
 
+    // 🔥 Heatmap state
+    private readonly List<Location> _heatPoints = new();
+    private const int MaxHeatPoints = 150;
+    private bool _mapCentered = false;
+
     public MainPage()
     {
         InitializeComponent();
@@ -34,7 +39,7 @@ public partial class MainPage : ContentPage
         if (_timer == null)
         {
             _timer = Dispatcher.CreateTimer();
-            _timer.Interval = TimeSpan.FromSeconds(5); // ⏱ X seconds
+            _timer.Interval = TimeSpan.FromSeconds(1); // 🔁 update interval
             _timer.Tick += OnTimerTick;
             _timer.Start();
         }
@@ -48,37 +53,63 @@ public partial class MainPage : ContentPage
 
     private async void OnTimerTick(object? sender, EventArgs e)
     {
-        if (_database == null || _mockProvider == null)
-            return;
-
-        // 1️⃣ Get next mock location
-        Location location = _mockProvider.GetNext();
-
-        // 2️⃣ Save to SQLite
-        var point = new LocationPoint
+        try
         {
-            Latitude = location.Latitude,
-            Longitude = location.Longitude,
-            Timestamp = DateTime.UtcNow
-        };
+            if (_database == null || _mockProvider == null)
+                return;
 
-        await _database.InsertAsync(point);
+            // 1️⃣ Get next mock location
+            Location location = _mockProvider.GetNext();
 
-        // 3️⃣ Move map (optional but helps visualization)
-        map.MoveToRegion(
-            MapSpan.FromCenterAndRadius(
-                location,
-                Distance.FromMeters(300)));
+            // 2️⃣ Save to SQLite
+            var point = new LocationPoint
+            {
+                Latitude = location.Latitude,
+                Longitude = location.Longitude,
+                Timestamp = DateTime.UtcNow
+            };
 
-        // 4️⃣ Draw ONE small blue circle (incremental simulation)
-        var circle = new Circle
+            await _database.InsertAsync(point);
+
+            // 3️⃣ Center map ONCE (important for heatmap UX)
+            if (!_mapCentered)
+            {
+                map.MoveToRegion(
+                    MapSpan.FromCenterAndRadius(
+                        location,
+                        Distance.FromMeters(400)));
+
+                _mapCentered = true;
+            }
+
+            // 4️⃣ Track heat points
+            _heatPoints.Add(location);
+            if (_heatPoints.Count > MaxHeatPoints)
+                _heatPoints.RemoveAt(0);
+
+            // 5️⃣ Heat intensity coloring
+            Color heatColor =
+                _heatPoints.Count switch
+                {
+                    < 20 => Colors.Blue.WithAlpha(0.65f),
+                    < 60 => Colors.Yellow.WithAlpha(0.65f),
+                    _ => Colors.Red.WithAlpha(0.55f)
+                };
+
+            // 6️⃣ Draw heatmap circle
+            var heatCircle = new Circle
+            {
+                Center = location,
+                Radius = Distance.FromMeters(20),
+                StrokeWidth = 0,
+                FillColor = heatColor
+            };
+
+            map.MapElements.Add(heatCircle);
+        }
+        catch (Exception ex)
         {
-            Center = location,
-            Radius = Distance.FromMeters(25),     // 🔵 small circle
-            StrokeWidth = 0,
-            FillColor = Colors.Blue.WithAlpha(0.35f)
-        };
-
-        map.MapElements.Add(circle);
+            System.Diagnostics.Debug.WriteLine($"[Heatmap Error] {ex}");
+        }
     }
 }

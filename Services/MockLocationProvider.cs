@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Devices.Sensors;
+﻿using System.Text.Json;
+using Microsoft.Maui.Devices.Sensors;
 
 namespace tracker.Services;
 
@@ -7,23 +8,52 @@ public class MockLocationProvider
     private readonly List<Location> _mockPath;
     private int _index = 0;
 
-    public MockLocationProvider()
+    public MockLocationProvider(string resourceFile = "mock_path_live.json")
     {
-        _mockPath = new List<Location>
-        {
-            new(37.7749, -122.4194), // SF
-            new(37.7755, -122.4188),
-            new(37.7760, -122.4180),
-            new(37.7766, -122.4172),
-            new(37.7772, -122.4165),
-            new(37.7778, -122.4158)
-        };
+        _mockPath = LoadFromResource(resourceFile);
+
+        if (_mockPath.Count == 0)
+            throw new InvalidOperationException("Mock path resource is empty.");
+    }
+
+    private static List<Location> LoadFromResource(string fileName)
+    {
+        using var stream = FileSystem
+            .OpenAppPackageFileAsync(fileName)
+            .GetAwaiter()
+            .GetResult();
+
+        using var reader = new StreamReader(stream);
+        var json = reader.ReadToEnd();
+
+        var points = JsonSerializer.Deserialize<List<MockLocationDto>>(
+            json,
+            new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            }) ?? new();
+
+        return points
+            .Select(p => new Location(p.Lat, p.Lng))
+            .ToList();
     }
 
     public Location GetNext()
     {
         var loc = _mockPath[_index];
         _index = (_index + 1) % _mockPath.Count;
-        return loc;
+
+        return new Location(loc.Latitude, loc.Longitude)
+        {
+            Timestamp = DateTimeOffset.UtcNow,
+            Accuracy = 5
+        };
+    }
+
+    // 🔑 Matches your JSON exactly
+    private class MockLocationDto
+    {
+        public double Lat { get; set; }
+        public double Lng { get; set; }
     }
 }
