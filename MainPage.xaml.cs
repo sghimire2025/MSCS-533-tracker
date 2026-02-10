@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Devices.Sensors;
+using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Maps;
 using tracker.Models;
 using tracker.Services;
@@ -22,7 +23,6 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
-        // ✅ Resolve services ONLY after page appears
         _database ??= Application.Current!
             .Handler!
             .MauiContext!
@@ -34,7 +34,7 @@ public partial class MainPage : ContentPage
         if (_timer == null)
         {
             _timer = Dispatcher.CreateTimer();
-            _timer.Interval = TimeSpan.FromSeconds(5);
+            _timer.Interval = TimeSpan.FromSeconds(5); // ⏱ X seconds
             _timer.Tick += OnTimerTick;
             _timer.Start();
         }
@@ -51,8 +51,10 @@ public partial class MainPage : ContentPage
         if (_database == null || _mockProvider == null)
             return;
 
+        // 1️⃣ Get next mock location
         Location location = _mockProvider.GetNext();
 
+        // 2️⃣ Save to SQLite
         var point = new LocationPoint
         {
             Latitude = location.Latitude,
@@ -62,16 +64,21 @@ public partial class MainPage : ContentPage
 
         await _database.InsertAsync(point);
 
+        // 3️⃣ Move map (optional but helps visualization)
         map.MoveToRegion(
             MapSpan.FromCenterAndRadius(
                 location,
-                Distance.FromMeters(500)));
+                Distance.FromMeters(300)));
 
-        map.Pins.Add(new Pin
+        // 4️⃣ Draw ONE small blue circle (incremental simulation)
+        var circle = new Circle
         {
-            Location = location,
-            Label = point.Timestamp.ToShortTimeString(),
-            Type = PinType.Place
-        });
+            Center = location,
+            Radius = Distance.FromMeters(25),     // 🔵 small circle
+            StrokeWidth = 0,
+            FillColor = Colors.Blue.WithAlpha(0.35f)
+        };
+
+        map.MapElements.Add(circle);
     }
 }
