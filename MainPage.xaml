@@ -5,37 +5,11 @@
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
     x:Class="tracker.MainPage">
 
-    <Grid RowDefinitions="2*,3*">
-
-        <!-- MAP -->
+    <Grid>
         <maps:Map
             x:Name="map"
-            Grid.Row="0" />
-
-        <!-- CONTENT -->
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="30" Spacing="25">
-
-                <Image
-                    Source="dotnet_bot.png"
-                    HeightRequest="185"
-                    Aspect="AspectFit" />
-
-                <Label
-                    Text="Hello, World!"
-                    Style="{StaticResource Headline}" />
-
-                <Label
-                    Text="Welcome to &#10;.NET Multi-platform App UI"
-                    Style="{StaticResource SubHeadline}" />
-
-                <Button
-                    x:Name="CounterBtn"
-                    Text="Click me"
-                    Clicked="OnCounterClicked"
-                    HorizontalOptions="Fill" />
-            </VerticalStackLayout>
-        </ScrollView>
-
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand" />
     </Grid>
+
 </ContentPage>
