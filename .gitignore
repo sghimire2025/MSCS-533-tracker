@@ -1,0 +1,102 @@
+# ===============================
+# .NET / Visual Studio
+# ===============================
+bin/
+obj/
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+ARM/
+ARM64/
+
+# Visual Studio cache/options
+.vs/
+*.user
+*.userosscache
+*.suo
+*.cache
+*.log
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# ===============================
+# .NET MAUI / Xamarin
+# ===============================
+# Android
+*.apk
+*.aab
+*.keystore
+*.jks
+*.dex
+*.class
+
+# iOS / MacCatalyst
+*.app
+*.ipa
+*.dSYM/
+*.xcuserstate
+*.xcworkspace/
+*.xcodeproj/
+
+# Windows
+AppPackages/
+BundleArtifacts/
+*.appx
+*.msix
+*.msixbundle
+
+# ===============================
+# MAUI generated assets
+# ===============================
+Resources/**/obj/
+Resources/**/bin/
+MauiProgram.g.cs
+
+# ===============================
+# Logs & temp files
+# ===============================
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# ===============================
+# OS-specific
+# ===============================
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===============================
+# NuGet
+# ===============================
+*.nupkg
+.nuget/
+packages/
+project.lock.json
+
+# ===============================
+# Environment / secrets
+# ===============================
+.env
+.env.*
+secrets.json
+appsettings.Development.json
+appsettings.Local.json
+
+# ===============================
+# Test / coverage
+# ===============================
+TestResults/
+coverage/
+coverage.*
