@@ -1,4 +1,3 @@
-//https://maps.googleapis.com/maps/api/directions/json?origin=39.010590,-84.636757&destination=39.010147,-84.648457&key=AIzaSyDmSdVDLReEv_GVT1RTfMEYaZGAxviNzy8
 {
   "geocoded_waypoints": [
     {

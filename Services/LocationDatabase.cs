@@ -10,7 +10,13 @@ public class LocationDatabase
     public LocationDatabase(string dbPath)
     {
         _db = new SQLiteAsyncConnection(dbPath);
-        _db.CreateTableAsync<LocationPoint>().Wait();
+        // Initialize table asynchronously - don't use .Wait() to avoid deadlocks
+        _ = InitializeAsync();
+    }
+
+    private async Task InitializeAsync()
+    {
+        await _db.CreateTableAsync<LocationPoint>();
     }
 
     public Task InsertAsync(LocationPoint point)
