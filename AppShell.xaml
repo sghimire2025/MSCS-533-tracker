@@ -7,7 +7,7 @@
     Title="tracker">
 
     <ShellContent
-        Title="Home"
+        Title="MainView"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

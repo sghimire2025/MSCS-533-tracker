@@ -6,10 +6,131 @@
     x:Class="tracker.MainPage">
 
     <Grid>
+
+        <!-- ① Full-screen map -->
         <maps:Map
             x:Name="map"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand" />
-    </Grid>
 
+        <!-- ② Turn instruction card (top, shown while tracking) -->
+        <Border
+            x:Name="instructionCard"
+            IsVisible="False"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start"
+            Margin="12,12,12,0"
+            Padding="14,10"
+            BackgroundColor="#EE1a1a2e"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 14">
+            <Grid ColumnDefinitions="36,*">
+                <!-- Maneuver icon -->
+                <Label
+                    x:Name="maneuverIcon"
+                    Text="⬆"
+                    FontSize="22"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Grid.Column="0" />
+                <!-- Instruction text -->
+                <Label
+                    x:Name="instructionLabel"
+                    Text=""
+                    TextColor="White"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    LineBreakMode="WordWrap"
+                    VerticalOptions="Center"
+                    Grid.Column="1" />
+            </Grid>
+        </Border>
+
+        <!-- ③ Top-right: status dot + ETA -->
+        <Border
+            x:Name="etaBadge"
+            HorizontalOptions="End"
+            VerticalOptions="Start"
+            Margin="0,12,12,0"
+            Padding="10,6"
+            BackgroundColor="#CC16213e"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 12">
+            <HorizontalStackLayout Spacing="6">
+                <Ellipse
+                    x:Name="statusDot"
+                    WidthRequest="8"
+                    HeightRequest="8"
+                    Fill="Gray"
+                    VerticalOptions="Center" />
+                <Label
+                    x:Name="etaLabel"
+                    Text="⏱ --:--"
+                    TextColor="White"
+                    FontSize="11"
+                    FontAttributes="Bold" />
+            </HorizontalStackLayout>
+        </Border>
+
+        <!-- ④ Top-left: step counter -->
+        <Border
+            x:Name="counterBadge"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            Margin="12,12,0,0"
+            Padding="10,6"
+            BackgroundColor="#CC0f3460"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 12">
+            <Label
+                x:Name="counterLabel"
+                Text="🚶 0 / …"
+                TextColor="White"
+                FontSize="11"
+                FontAttributes="Bold" />
+        </Border>
+
+        <!-- ⑤ Arrival banner -->
+        <Border
+            x:Name="arrivalBanner"
+            IsVisible="False"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Padding="28,18"
+            BackgroundColor="#EE2ECC71"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 20">
+            <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                <Label
+                    Text="🏁  Arrived!"
+                    TextColor="White"
+                    FontSize="22"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center" />
+                <Label
+                    x:Name="arrivalAddress"
+                    Text=""
+                    TextColor="#DDE8FF"
+                    FontSize="12"
+                    HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- ⑥ Start / Stop button -->
+        <Button
+            x:Name="trackingButton"
+            Text="🚶  Start Walking"
+            Clicked="OnTrackingButtonClicked"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Margin="0,0,0,40"
+            Padding="32,16"
+            FontSize="15"
+            FontAttributes="Bold"
+            TextColor="White"
+            BackgroundColor="#2ECC71"
+            CornerRadius="32" />
+
+    </Grid>
 </ContentPage>

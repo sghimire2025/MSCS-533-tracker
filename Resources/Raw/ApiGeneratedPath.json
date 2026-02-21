@@ -1,0 +1,286 @@
+//https://maps.googleapis.com/maps/api/directions/json?origin=39.010590,-84.636757&destination=39.010147,-84.648457&key=AIzaSyDmSdVDLReEv_GVT1RTfMEYaZGAxviNzy8
+{
+  "geocoded_waypoints": [
+    {
+      "geocoder_status": "OK",
+      "place_id": "ChIJeWnR-cfHQYgRILkVGs6gL_s",
+      "types": [
+        "establishment",
+        "point_of_interest"
+      ]
+    },
+    {
+      "geocoder_status": "OK",
+      "place_id": "ChIJAwkZ3pHHQYgRl4EJYaVrqu0",
+      "types": [
+        "bar",
+        "establishment",
+        "food",
+        "point_of_interest",
+        "restaurant"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "bounds": {
+        "northeast": {
+          "lat": 39.011518,
+          "lng": -84.6369673
+        },
+        "southwest": {
+          "lat": 39.00814860000001,
+          "lng": -84.6492401
+        }
+      },
+      "copyrights": "Powered by Google, ©2026 Google",
+      "legs": [
+        {
+          "distance": {
+            "text": "1.0 mi",
+            "value": 1607
+          },
+          "duration": {
+            "text": "4 mins",
+            "value": 227
+          },
+          "end_address": "6835 Houston Rd, Florence, KY 41042, USA",
+          "end_location": {
+            "lat": 39.01026969999999,
+            "lng": -84.64865929999999
+          },
+          "start_address": "430 Meijer Dr, Florence, KY 41042, USA",
+          "start_location": {
+            "lat": 39.0107319,
+            "lng": -84.6369673
+          },
+          "steps": [
+            {
+              "distance": {
+                "text": "144 ft",
+                "value": 44
+              },
+              "duration": {
+                "text": "1 min",
+                "value": 9
+              },
+              "end_location": {
+                "lat": 39.0105203,
+                "lng": -84.6373926
+              },
+              "html_instructions": "Head <b>southwest</b> toward <b>Meijer Dr</b>",
+              "polyline": {
+                "points": "ahbmF`tqcOHPHPHTJX"
+              },
+              "start_location": {
+                "lat": 39.0107319,
+                "lng": -84.6369673
+              },
+              "travel_mode": "DRIVING"
+            },
+            {
+              "distance": {
+                "text": "52 ft",
+                "value": 16
+              },
+              "duration": {
+                "text": "1 min",
+                "value": 5
+              },
+              "end_location": {
+                "lat": 39.0106518,
+                "lng": -84.63747289999999
+              },
+              "html_instructions": "Turn <b>right</b> toward <b>Meijer Dr</b>",
+              "maneuver": "turn-right",
+              "polyline": {
+                "points": "wfbmFtvqcOYN"
+              },
+              "start_location": {
+                "lat": 39.0105203,
+                "lng": -84.6373926
+              },
+              "travel_mode": "DRIVING"
+            },
+            {
+              "distance": {
+                "text": "0.3 mi",
+                "value": 461
+              },
+              "duration": {
+                "text": "1 min",
+                "value": 59
+              },
+              "end_location": {
+                "lat": 39.0081478,
+                "lng": -84.6416615
+              },
+              "html_instructions": "Turn <b>left</b> onto <b>Meijer Dr</b>",
+              "maneuver": "turn-left",
+              "polyline": {
+                "points": "qgbmFdwqcOJPR^JRBHP\\Rd@BFNZP^Rb@p@tAHR`@v@JN@Dd@d@DFTR^f@R`@l@hAj@hALRHTDP@DDX@T"
+              },
+              "start_location": {
+                "lat": 39.0106518,
+                "lng": -84.63747289999999
+              },
+              "travel_mode": "DRIVING"
+            },
+            {
+              "distance": {
+                "text": "0.3 mi",
+                "value": 476
+              },
+              "duration": {
+                "text": "1 min",
+                "value": 51
+              },
+              "end_location": {
+                "lat": 39.011328,
+                "lng": -84.6450802
+              },
+              "html_instructions": "Continue onto <b>Ted Bushelman Blvd</b>",
+              "polyline": {
+                "points": "}wamFjqrcO?T?LCTABGZIVMRA@IJ_AhAGFY\\IHEFCBQNEDUN_@TC?[NC@a@Na@NUJUJ_@X?@g@l@C@GJONABIHMPA@c@j@OLEDw@`A"
+              },
+              "start_location": {
+                "lat": 39.0081478,
+                "lng": -84.6416615
+              },
+              "travel_mode": "DRIVING"
+            },
+            {
+              "distance": {
+                "text": "0.2 mi",
+                "value": 385
+              },
+              "duration": {
+                "text": "1 min",
+                "value": 62
+              },
+              "end_location": {
+                "lat": 39.0092782,
+                "lng": -84.6482006
+              },
+              "html_instructions": "Turn <b>left</b> onto <b>KY-842 W</b>",
+              "maneuver": "turn-left",
+              "polyline": {
+                "points": "ykbmFvfscOMBGHOLFRLLLHn@fAp@lAHFNTd@f@\\f@RZnAdBPV`@j@PVX`@Vb@"
+              },
+              "start_location": {
+                "lat": 39.011328,
+                "lng": -84.6450802
+              },
+              "travel_mode": "DRIVING"
+            },
+            {
+              "distance": {
+                "text": "423 ft",
+                "value": 129
+              },
+              "duration": {
+                "text": "1 min",
+                "value": 16
+              },
+              "end_location": {
+                "lat": 39.0101055,
+                "lng": -84.6492401
+              },
+              "html_instructions": "Turn <b>right</b> onto <b>Kiley Pl</b>",
+              "maneuver": "turn-right",
+              "polyline": {
+                "points": "__bmFfzscOOTIHOTIHOT{@jAe@l@"
+              },
+              "start_location": {
+                "lat": 39.0092782,
+                "lng": -84.6482006
+              },
+              "travel_mode": "DRIVING"
+            },
+            {
+              "distance": {
+                "text": "187 ft",
+                "value": 57
+              },
+              "duration": {
+                "text": "1 min",
+                "value": 10
+              },
+              "end_location": {
+                "lat": 39.0104853,
+                "lng": -84.648793
+              },
+              "html_instructions": "Turn <b>right</b> onto <b>Doering Dr</b>",
+              "maneuver": "turn-right",
+              "polyline": {
+                "points": "edbmFv`tcOw@aAQWA?"
+              },
+              "start_location": {
+                "lat": 39.0101055,
+                "lng": -84.6492401
+              },
+              "travel_mode": "DRIVING"
+            },
+            {
+              "distance": {
+                "text": "82 ft",
+                "value": 25
+              },
+              "duration": {
+                "text": "1 min",
+                "value": 8
+              },
+              "end_location": {
+                "lat": 39.0103623,
+                "lng": -84.6485563
+              },
+              "html_instructions": "Turn <b>right</b>",
+              "maneuver": "turn-right",
+              "polyline": {
+                "points": "qfbmF|}scOXm@"
+              },
+              "start_location": {
+                "lat": 39.0104853,
+                "lng": -84.648793
+              },
+              "travel_mode": "DRIVING"
+            },
+            {
+              "distance": {
+                "text": "46 ft",
+                "value": 14
+              },
+              "duration": {
+                "text": "1 min",
+                "value": 7
+              },
+              "end_location": {
+                "lat": 39.01026969999999,
+                "lng": -84.64865929999999
+              },
+              "html_instructions": "Turn <b>right</b><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+              "maneuver": "turn-right",
+              "polyline": {
+                "points": "webmFn|scODFJJ"
+              },
+              "start_location": {
+                "lat": 39.0103623,
+                "lng": -84.6485563
+              },
+              "travel_mode": "DRIVING"
+            }
+          ],
+          "traffic_speed_entry": [],
+          "via_waypoint": []
+        }
+      ],
+      "overview_polyline": {
+        "points": "ahbmF`tqcOh@rAYNJP^r@l@tAfBtDx@`Bj@l@t@z@zBhENf@F^@j@Cb@I^Wj@kAvAq@v@[Xu@d@_@N}Al@u@d@g@n@]`@}@hAURw@`AMBWVFRLLLHn@fAz@tAt@|@p@bAtC`Ep@dAY^eB`Ce@l@w@aASWXm@DFJJ"
+      },
+      "summary": "Meijer Dr and Ted Bushelman Blvd",
+      "warnings": [],
+      "waypoint_order": []
+    }
+  ],
+  "status": "OK"
+}
