@@ -8,7 +8,7 @@ namespace tracker.Services
     // and provide one point per tick (simulation).
     public class RouteWalkingProvider
     {
-        public const double TickSeconds = 0.2; // Original speed
+        public const double TickSeconds = 0.80;//Faster simulation - 10 updates per second
         public const double WalkSpeedMps = 5.0; // keep your existing speed
 
         // Google Maps API response structure
