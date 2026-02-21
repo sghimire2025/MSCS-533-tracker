@@ -17,7 +17,7 @@ public partial class MainPage : ContentPage
     private int _routeIndex = 0;
 
     private Pin? _walkerPin;
-    private Polyline? _walkedPolyline;
+    private RouteVisualizationService? _routeVisualizationService;
 
     private bool _isTracking = false;
 
@@ -85,13 +85,8 @@ public partial class MainPage : ContentPage
             Type = PinType.Place
         });
 
-        // Blue polyline (starts empty) - replaces the dark path
-        _walkedPolyline = new Polyline
-        {
-            StrokeWidth = 8,
-            StrokeColor = Colors.Blue
-        };
-        map.MapElements.Add(_walkedPolyline);
+        // Initialize dotted polyline service
+        _routeVisualizationService = new RouteVisualizationService();
 
         // Center map on start
         map.MoveToRegion(MapSpan.FromCenterAndRadius(start, Distance.FromMeters(500)));
@@ -161,8 +156,8 @@ public partial class MainPage : ContentPage
             _walkerPin.Location = loc;
         }
 
-        // Extend blue polyline path
-        _walkedPolyline?.Geopath.Add(loc);
+        // Add point to dotted polyline visualization
+        _routeVisualizationService?.AddRoutePoint(loc, map);
 
         // Keep camera following
         map.MoveToRegion(MapSpan.FromCenterAndRadius(loc, Distance.FromMeters(220)));
@@ -172,5 +167,11 @@ public partial class MainPage : ContentPage
     {
         _isTracking = false;
         _timer?.Stop();
+    }
+
+    private void ClearRoute()
+    {
+        _routeVisualizationService?.ClearRoute(map);
+        _routeIndex = 0;
     }
 }
